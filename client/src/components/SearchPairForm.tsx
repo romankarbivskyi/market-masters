@@ -6,13 +6,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Select } from "@/components/ui/Select";
 import Input from "@/components/ui/Input";
 import { Search } from "lucide-react";
-import { API } from "@/lib/axios";
 import { useEffect, useMemo, useState, useCallback } from "react";
-import { AxiosError, AxiosResponse } from "axios";
 import { NetworkConfig } from "@/types";
 import { fetchPair } from "@/services/api";
-import { useRouter } from "next/navigation";
 import { usePairStore } from "@/stores/usePairStore";
+import { fetchNetworks } from "@/services/api";
+import { AxiosError } from "axios";
 
 const formSchema = z.object({
   network: z.string({
@@ -72,10 +71,7 @@ export default function TokenForm() {
 
   useEffect(() => {
     const fetchSupportedNetworks = async () => {
-      const { data } = await API.get<
-        { data: NetworkConfig[]; success: boolean },
-        AxiosResponse<{ data: NetworkConfig[]; success: boolean }>
-      >("/networks");
+      const { data } = await fetchNetworks();
 
       setNetworkList(data?.data);
     };
