@@ -37,7 +37,7 @@ jobs:
           context: ./client
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-client:latest
-          build-args: NEXT_PUBLIC_API_URL=http://localhost:5000/api
+          build-args: NEXT_PUBLIC_BASE_API_URL=http://20.199.75.62:5000/api
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
