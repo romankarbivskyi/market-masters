@@ -11,7 +11,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "MarketMasters | Home",
+  title: "MMasters | Home",
   description: "Find top market makers",
 };
 

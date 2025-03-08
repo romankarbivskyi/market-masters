@@ -1,4 +1,4 @@
-import { ApiResponse, NetworkConfig, TradersData } from "@/types";
+import { ApiResponse, NetworkConfig, Pair, TradersData } from "@/types";
 import { AxiosResponse } from "axios";
 import axios from "axios";
 
@@ -28,8 +28,13 @@ export const fetchTopTraders = (
   );
 };
 
-export const fetchPair = (network: string, address: string) => {
-  return API.get(`/pairs/${network}/${address}`);
+export const fetchPair = (
+  network: string,
+  address: string,
+): Promise<AxiosResponse<ApiResponse<Pair>>> => {
+  return API.get<ApiResponse<Pair>, AxiosResponse<ApiResponse<Pair>>>(
+    `/pairs/${network}/${address}`,
+  );
 };
 
 export const fetchNetworks = (): Promise<

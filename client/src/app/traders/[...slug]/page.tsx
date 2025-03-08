@@ -1,5 +1,6 @@
 import TopTradersTable from "@/components/TopTradersTable";
-import { fetchTopTraders } from "@/services/api";
+import { fetchPair, fetchTopTraders } from "@/services/api";
+import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{
@@ -7,17 +8,27 @@ interface PageProps {
   }>;
 }
 
-export default async function Page({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const [network, address] = (await params)?.slug;
 
-  if (
-    !address ||
-    !network ||
-    typeof address !== "string" ||
-    typeof network !== "string"
-  ) {
-    return <div>Missing required parameters</div>;
+  const { data } = await fetchPair(network, address);
+
+  if (!data.success) {
+    return {
+      title: "Pair not found",
+    };
   }
+
+  return {
+    title: "MMasters | Top Traders for " + data.data.id.pair,
+    description: `Top traders for ${data.data.id.pair} pair on ${data.data.id.chain}`,
+  };
+}
+
+export default async function Page({ params }: PageProps) {
+  const [network, address] = (await params)?.slug;
 
   const { data } = await fetchTopTraders(network, address);
 
