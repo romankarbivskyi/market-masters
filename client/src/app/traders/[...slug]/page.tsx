@@ -19,22 +19,18 @@ export default async function Page({ params }: PageProps) {
     return <div>Missing required parameters</div>;
   }
 
-  try {
-    const { data } = await fetchTopTraders(network, address);
+  const { data } = await fetchTopTraders(network, address);
 
-    if (!data.success) {
-      return <div>No data available</div>;
-    }
-
-    return (
-      <div>
-        <TopTradersTable
-          tradersData={data.data.traders}
-          network={data.data.network}
-        />
-      </div>
-    );
-  } catch (error) {
-    return <div>Error loading data</div>;
+  if (!data.success) {
+    return <div>No data available</div>;
   }
+
+  return (
+    <div>
+      <TopTradersTable
+        tradersData={data.data.traders}
+        network={data.data.network}
+      />
+    </div>
+  );
 }
