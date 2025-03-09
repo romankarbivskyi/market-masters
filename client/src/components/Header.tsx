@@ -16,7 +16,7 @@ export default function Header() {
               <BarChart2 size={18} className="text-white" />
             </div>
             <span className="text-lg font-bold text-white">
-              Market<span className="text-indigo-400">Masters</span>
+              M<span className="text-indigo-400">Masters</span>
             </span>
           </Link>
 

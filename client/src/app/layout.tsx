@@ -5,6 +5,7 @@ import { Sora } from "next/font/google";
 import Header from "@/components/Header";
 import Modal from "@/components/ui/Modal";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Footer from "@/components/Footer";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -89,9 +90,12 @@ export default function RootLayout({
       <head>
         <meta name="google-adsense-account" content="ca-pub-1430857171678326" />
       </head>
-      <body className={`${sora.className} bg-black text-white antialiased`}>
+      <body
+        className={`${sora.className} flex min-h-screen flex-col bg-black text-white antialiased`}
+      >
         <Header />
-        <main className="mt-5 px-5">{children}</main>
+        <main className="flex-grow px-5 py-5">{children}</main>
+        <Footer />
         <Modal />
         <GoogleAnalytics gaId="G-1X66SFCTD9" />
       </body>
