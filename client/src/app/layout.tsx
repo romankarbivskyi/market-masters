@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { Sora } from "next/font/google";
 import Header from "@/components/Header";
 import Modal from "@/components/ui/Modal";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Header />
         <main className="mt-5 px-5">{children}</main>
         <Modal />
+        <GoogleAnalytics gaId="G-1X66SFCTD9" />
       </body>
     </html>
   );
