@@ -12,8 +12,71 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "MMasters | Home",
-  description: "Find top market makers",
+  metadataBase: new URL("https://mmasters.live"),
+  title: {
+    default: "MMasters | Top Crypto Traders & Market Makers",
+    template: "%s | MMasters",
+  },
+  description:
+    "Find and analyze top crypto market makers and traders. Track performance, trading strategies, and profitability across multiple blockchain networks.",
+  keywords: [
+    "crypto",
+    "trading",
+    "market makers",
+    "blockchain analytics",
+    "trader performance",
+    "DEX",
+    "DeFi",
+  ],
+  authors: [{ name: "MMasters Team" }],
+  creator: "MMasters",
+  publisher: "MMasters",
+  applicationName: "Market Masters",
+  category: "Finance",
+  openGraph: {
+    type: "website",
+    siteName: "Market Masters",
+    title: "MMasters | Top Crypto Traders & Market Makers",
+    description:
+      "Find and analyze top crypto market makers and traders. Track performance, trading strategies, and profitability across multiple blockchain networks.",
+    url: "https://mmasters.live",
+    images: [
+      {
+        url: "https://mmasters.live/og-image.png", // Add your OG image
+        width: 1200,
+        height: 630,
+        alt: "Market Masters - Crypto Trading Analytics",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MMasters | Top Crypto Traders & Market Makers",
+    description:
+      "Find and analyze top crypto market makers and traders. Track performance, trading strategies, and profitability across multiple blockchain networks.",
+    images: ["https://mmasters.live/twitter-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    other: {
+      rel: "apple-touch-icon-precomposed",
+      url: "/apple-touch-icon-precomposed.png",
+    },
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
+  themeColor: "#000000",
+  alternates: {
+    canonical: "https://mmasters.live",
+  },
 };
 
 export default function RootLayout({
