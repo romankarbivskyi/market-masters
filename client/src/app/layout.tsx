@@ -86,6 +86,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-1430857171678326" />
+      </head>
       <body className={`${sora.className} bg-black text-white antialiased`}>
         <Header />
         <main className="mt-5 px-5">{children}</main>
