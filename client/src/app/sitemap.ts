@@ -8,11 +8,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 1,
     },
-    {
-      url: "https://mmasters.live/traders",
-      lastModified: new Date(),
-      changeFrequency: "always",
-      priority: 0.8,
-    },
   ];
 }
