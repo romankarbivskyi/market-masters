@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     url: "https://mmasters.live",
     images: [
       {
-        url: "https://mmasters.live/og-image.png", // Add your OG image
+        url: "https://mmasters.live/logo.png",
         width: 1200,
         height: 630,
         alt: "Market Masters - Crypto Trading Analytics",
@@ -51,10 +51,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MMasters | Top Crypto Traders & Market Makers",
+    title: "Top Crypto Traders & Market Makers | MMasters",
     description:
       "Find and analyze top crypto market makers and traders. Track performance, trading strategies, and profitability across multiple blockchain networks.",
-    images: ["https://mmasters.live/twitter-image.png"],
+    images: ["https://mmasters.live/logo.png"],
   },
   robots: {
     index: true,
