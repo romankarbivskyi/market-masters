@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import Modal from "@/components/ui/Modal";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Footer from "@/components/Footer";
-import Script from "next/script";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -90,6 +89,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="google-adsense-account" content="ca-pub-1430857171678326" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1430857171678326"
+          crossorigin="anonymous"
+        ></script>
       </head>
       <body
         className={`${sora.className} flex min-h-screen flex-col bg-black text-white antialiased`}
@@ -99,10 +103,6 @@ export default function RootLayout({
         <Footer />
         <Modal />
         <GoogleAnalytics gaId="G-1X66SFCTD9" />
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1430857171678326"
-        />
       </body>
     </html>
   );
