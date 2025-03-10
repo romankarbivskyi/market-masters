@@ -10,7 +10,7 @@ export default function TermsOfService() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
       <h1 className="mb-6 text-3xl font-bold">Terms of Service</h1>
-      <p className="mb-8 text-sm text-zinc-400">Last Updated: March 9, 2025</p>
+      <p className="mb-8 text-sm text-zinc-400">Last Updated: March 10, 2025</p>
 
       <section className="mb-8">
         <h2 className="mb-4 text-2xl font-semibold">1. Introduction</h2>
