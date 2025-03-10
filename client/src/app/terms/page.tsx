@@ -210,13 +210,11 @@ export default function TermsOfService() {
         <h2 className="mb-4 text-2xl font-semibold">12. Governing Law</h2>
         <p className="mb-4">
           These Terms shall be governed and construed in accordance with the
-          laws of [Your Jurisdiction], without regard to its conflict of law
-          provisions.
+          laws of Ukraine, without regard to its conflict of law provisions.
         </p>
         <p className="mb-4">
           Any disputes arising under or in connection with these Terms shall be
-          subject to the exclusive jurisdiction of the courts in [Your
-          Jurisdiction].
+          subject to the exclusive jurisdiction of the courts in Ukraine.
         </p>
       </section>
 
