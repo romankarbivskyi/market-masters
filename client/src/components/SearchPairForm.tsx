@@ -140,11 +140,11 @@ export default function TokenForm() {
               </FormItem>
             )}
           />
-          <div className="flex gap-3 self-start sm:self-end">
+          <div className="flex flex-1 gap-3">
             <Button
               type="submit"
               disabled={isLoading}
-              className="mt-auto bg-indigo-600 px-6 py-3 text-white hover:bg-indigo-700/80"
+              className="mt-auto w-full bg-indigo-600 px-6 py-3 text-white hover:bg-indigo-700/80"
             >
               <Search className="mr-2" />
               Search
