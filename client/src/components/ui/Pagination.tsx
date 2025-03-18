@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PaginationProps {
   currentPage: number;
@@ -13,86 +14,29 @@ export default function Pagination({
   onChange,
   className = "",
 }: PaginationProps) {
-  const pages = useMemo(() => {
-    const pages: (number | string)[] = [];
-
-    pages.push(1);
-
-    if (currentPage > 3) {
-      pages.push("...");
-    }
-
-    if (currentPage > 2) {
-      pages.push(currentPage - 1);
-    }
-
-    if (currentPage !== 1 && currentPage !== totalPages) {
-      pages.push(currentPage);
-    }
-
-    if (currentPage < totalPages - 1) {
-      pages.push(currentPage + 1);
-    }
-
-    if (currentPage < totalPages - 2) {
-      pages.push("...");
-    }
-
-    if (totalPages > 1) {
-      pages.push(totalPages);
-    }
-
-    return pages;
-  }, [currentPage, totalPages]);
-
-  if (totalPages <= 1) {
-    return null;
-  }
-
   return (
     <div className={`flex w-full items-center ${className}`}>
       <div className="mx-auto flex flex-wrap items-center gap-2 p-2 text-sm">
-        <button
-          className={`rounded-xl border border-zinc-700 p-2 ${
-            currentPage === 1
-              ? "cursor-not-allowed opacity-50"
-              : "hover:bg-zinc-800"
-          }`}
+        <Button
+          variant="secondary"
+          className="rounded-xl"
           disabled={currentPage === 1}
           onClick={() => {
             if (currentPage === 1) return;
             onChange(currentPage - 1);
           }}
         >
+          <ChevronLeft className="mr-2" />
           Prev
-        </button>
+        </Button>
 
-        {pages.map((e, i) => (
-          <button
-            key={i}
-            className={`h-10 w-10 rounded-xl ${
-              currentPage === e
-                ? "border border-zinc-700 bg-zinc-800"
-                : typeof e === "number"
-                  ? "hover:bg-zinc-800/50"
-                  : ""
-            }`}
-            onClick={() => {
-              if (typeof e === "string") return;
-              onChange(e);
-            }}
-            disabled={typeof e === "string"}
-          >
-            {e}
-          </button>
-        ))}
+        <div className="rounded-xl border border-zinc-700 px-4 py-2">
+          {currentPage}
+        </div>
 
-        <button
-          className={`rounded-xl border border-zinc-700 p-2 ${
-            currentPage === totalPages
-              ? "cursor-not-allowed opacity-50"
-              : "hover:bg-zinc-800"
-          }`}
+        <Button
+          variant="secondary"
+          className="rounded-xl"
           disabled={currentPage === totalPages}
           onClick={() => {
             if (currentPage === totalPages) return;
@@ -100,7 +44,8 @@ export default function Pagination({
           }}
         >
           Next
-        </button>
+          <ChevronRight className="ml-2" />
+        </Button>
       </div>
     </div>
   );

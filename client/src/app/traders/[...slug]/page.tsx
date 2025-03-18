@@ -84,11 +84,9 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <div>
-      <TopTradersTable
-        tradersData={data.data.traders}
-        network={data.data.network}
-      />
-    </div>
+    <TopTradersTable
+      tradersData={data.data.traders}
+      network={data.data.network}
+    />
   );
 }

@@ -144,7 +144,7 @@ export default function TokenForm() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="mt-auto px-6 py-3"
+              className="mt-auto bg-indigo-600 px-6 py-3 text-white hover:bg-indigo-700/80"
             >
               <Search className="mr-2" />
               Search

@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import Switch from "@/components/ui/Switch";
+import { Switch } from "@/components/ui/switch";
 import { TraderInfo, TradersData } from "@/types";
 import { CopyIcon, FilterIcon, Timer } from "lucide-react";
 import Pagination from "@/components/ui/Pagination";
@@ -10,6 +10,13 @@ import { useModalStore } from "@/stores/useModalStore";
 import TraderDetails from "@/components/TraderDetails";
 import { currencyFormat, tokenAmountFormat } from "@/utils/formatters";
 import { NetworkConfig } from "@/types";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@/components/ui/table";
 
 enum SortType {
   REALIZED_PROFIT = "byRealizedProfit",
@@ -74,7 +81,7 @@ export default function TopTradersTable({
 
   if (!currentData.length) {
     return (
-      <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-10 text-center">
+      <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-10 text-center">
         <p className="text-zinc-400">No trading data available</p>
       </div>
     );
@@ -83,7 +90,7 @@ export default function TopTradersTable({
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-4 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-2">
+        <div className="flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/50 px-4 py-2">
           <span
             className={`text-sm ${sortType === SortType.REALIZED_PROFIT ? "font-medium text-white" : "text-zinc-400"}`}
           >
@@ -91,8 +98,7 @@ export default function TopTradersTable({
           </span>
           <Switch
             checked={sortType === SortType.TOTAL_PROFIT}
-            onChange={handleSortChange}
-            className="data-[state=checked]:bg-indigo-600"
+            onCheckedChange={handleSortChange}
           />
           <span
             className={`text-sm ${sortType === SortType.TOTAL_PROFIT ? "font-medium text-white" : "text-zinc-400"}`}
@@ -106,33 +112,32 @@ export default function TopTradersTable({
         </div>
       </div>
 
-      <div className="w-full overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm">
-        <table className="w-full min-w-[1000px] text-end">
-          <thead>
-            <tr className="border-b border-zinc-800">
+      <div className="overflow-x-auto rounded-xl border border-zinc-800">
+        <Table className="w-full min-w-[1024px]">
+          <TableHeader>
+            <TableRow className="border-none">
               {labels.map((label, i) => (
-                <td
+                <TableCell
                   key={label}
-                  className={`bg-[#131316] p-3 text-sm font-medium text-zinc-300 ${i === 0 ? "sticky left-0 text-start" : ""}`}
+                  className={`bg-zinc-800 p-3 text-sm font-medium text-zinc-300 ${i == 0 ? "sticky left-0" : "text-end"}`}
                 >
                   {label}
-                </td>
+                </TableCell>
               ))}
-            </tr>
-          </thead>
-          <tbody>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {currentData.map((traderInfo, index) => (
-              <TraderListItem
+              <TopTradersRow
                 trader={traderInfo}
                 network={network}
                 key={traderInfo.address}
                 isEven={index % 2 === 0}
               />
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
-
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
@@ -149,7 +154,7 @@ interface TraderListItemProps {
   isEven?: boolean;
 }
 
-export const TraderListItem = memo(
+export const TopTradersRow = memo(
   function TraderListItem({
     trader,
     network,
@@ -196,31 +201,31 @@ export const TraderListItem = memo(
       return "#03739c";
     }, [speedCategory]);
 
-    const rowClassName = isEven ? "bg-[#1F1F23]" : "bg-[#131316]";
+    const rowClassName = isEven ? "bg-zinc-900" : "bg-zinc-800";
     const isPnlPositive = pnl > 0;
 
     return (
-      <tr className={`${rowClassName} transition-colors hover:bg-zinc-800/50`}>
-        <td
-          className={`sticky left-0 p-3 ${rowClassName} hover:bg-zinc-800/50`}
+      <TableRow className={`${rowClassName} text-end hover:bg-zinc-700`}>
+        <TableCell
+          className={`sticky left-0 ${rowClassName} hover:bg-zinc-700`}
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 truncate">
             <Link
               href={network.exploreUrl + address}
               target="_blank"
-              className="text-xs transition-colors hover:text-indigo-400 hover:underline"
+              className="truncate text-xs transition-colors hover:text-indigo-400 hover:underline"
             >
               {truncatedAddress}
             </Link>
             <div onClick={handleCopyAddress}>
               <CopyIcon
                 size={15}
-                className="cursor-pointer text-zinc-400 transition-colors hover:text-zinc-100 active:text-indigo-400"
+                className="flex-shrink-0 cursor-pointer text-zinc-400 transition-colors hover:text-zinc-100 active:text-indigo-400"
               />
             </div>
           </div>
-        </td>
-        <td className="p-3 text-sm">
+        </TableCell>
+        <TableCell className="p-3 text-sm">
           <div className="flex items-center justify-end gap-1">
             <span
               className={
@@ -230,18 +235,18 @@ export const TraderListItem = memo(
               {currencyFormat.format(pnl + unrealizedProfit)}
             </span>
           </div>
-        </td>
-        <td className="p-3">
+        </TableCell>
+        <TableCell className="p-3">
           <span className={isPnlPositive ? "text-green-400" : "text-red-400"}>
             {currencyFormat.format(pnl)}
           </span>
-        </td>
-        <td className="p-3">
+        </TableCell>
+        <TableCell className="p-3">
           <div className="flex justify-end">
             <Timer color={speedColor} className="inline-block" />
           </div>
-        </td>
-        <td className="p-3 text-sm">
+        </TableCell>
+        <TableCell className="p-3 text-sm">
           {unrealizedProfit ? (
             <span
               className={
@@ -253,11 +258,11 @@ export const TraderListItem = memo(
           ) : (
             "-"
           )}
-        </td>
-        <td className="p-3 text-sm text-yellow-400">
+        </TableCell>
+        <TableCell className="p-3 text-sm text-yellow-400">
           {externalProfit ? currencyFormat.format(externalProfit) : "-"}
-        </td>
-        <td className="p-3 text-sm">
+        </TableCell>
+        <TableCell className="p-3 text-sm">
           {buys.count !== 0 ? (
             <div className="flex flex-col items-end">
               <span className="text-green-400">
@@ -273,8 +278,8 @@ export const TraderListItem = memo(
           ) : (
             "-"
           )}
-        </td>
-        <td className="p-3 text-sm">
+        </TableCell>
+        <TableCell className="p-3 text-sm">
           {sells.count !== 0 ? (
             <div className="flex flex-col items-end">
               <span className="text-red-400">
@@ -290,16 +295,16 @@ export const TraderListItem = memo(
           ) : (
             "-"
           )}
-        </td>
-        <td className="p-3">
+        </TableCell>
+        <TableCell className="p-3">
           <button
             className="rounded-md px-3 py-1.5 text-zinc-400 transition-colors hover:bg-indigo-900/30 hover:text-zinc-100"
             onClick={handleShowDetails}
           >
             <FilterIcon size={18} />
           </button>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
     );
   },
   (prevProps, nextProps) => {
