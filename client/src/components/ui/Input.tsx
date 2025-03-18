@@ -1,34 +1,22 @@
-"use client";
+import * as React from "react"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-interface InputProps {
-  defaultValue?: string;
-  type?: "text";
-  className?: string;
-  placeholder?: string;
-  disabled?: boolean;
-}
+const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
+  ({ className, type, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={cn(
+          "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+Input.displayName = "Input"
 
-export default function Input({
-  defaultValue,
-  className,
-  type = "text",
-  placeholder,
-  disabled,
-  ...props
-}: InputProps) {
-  return (
-    <input
-      type={type!}
-      className={cn(
-        className,
-        "rounded-md border border-zinc-700 bg-black px-4 py-2 placeholder:text-zinc-600",
-      )}
-      placeholder={placeholder ?? ""}
-      defaultValue={defaultValue ?? ""}
-      {...props}
-      disabled={disabled}
-    />
-  );
-}
+export { Input }

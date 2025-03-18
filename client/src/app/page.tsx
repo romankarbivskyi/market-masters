@@ -42,14 +42,7 @@ export default function Home() {
       </section>
 
       <section className="mb-10">
-        <div className="rounded-lg border border-zinc-700 p-2">
-          <h2 className="text-center text-lg font-medium text-white">
-            Find Top Traders for Any Token
-          </h2>
-          <div className="mx-auto max-w-3xl">
-            <SearchPairForm />
-          </div>
-        </div>
+        <SearchPairForm />
       </section>
 
       <section className="mb-10">

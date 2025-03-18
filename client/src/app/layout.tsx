@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Modal from "@/components/ui/Modal";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -95,12 +96,13 @@ export default function RootLayout({
         ></script>
       </head>
       <body
-        className={`${sora.className} flex min-h-screen flex-col bg-black text-white antialiased`}
+        className={`${sora.className} dark flex min-h-screen flex-col antialiased`}
       >
         <Header />
         <main className="flex-grow px-5 py-5">{children}</main>
         <Footer />
         <Modal />
+        <Toaster />
         <GoogleAnalytics gaId="G-1X66SFCTD9" />
       </body>
     </html>
