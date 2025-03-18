@@ -3,11 +3,9 @@
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { TraderInfo, TradersData } from "@/types";
-import { CopyIcon, FilterIcon, Timer } from "lucide-react";
+import { CopyIcon, Timer } from "lucide-react";
 import Pagination from "@/components/ui/Pagination";
 import Link from "next/link";
-import { useModalStore } from "@/stores/useModalStore";
-import TraderDetails from "@/components/TraderDetails";
 import { currencyFormat, tokenAmountFormat } from "@/utils/formatters";
 import { NetworkConfig } from "@/types";
 import {
@@ -17,6 +15,7 @@ import {
   TableRow,
   TableCell,
 } from "@/components/ui/table";
+import TraderDetails from "./TraderDetails";
 
 enum SortType {
   REALIZED_PROFIT = "byRealizedProfit",
@@ -173,18 +172,6 @@ export const TopTradersRow = memo(
       await navigator.clipboard?.writeText(address);
     }, [address]);
 
-    const modalActions = useModalStore((state) => state.actions);
-
-    const modalContent = useMemo(
-      () => <TraderDetails traderInfo={trader} network={network} />,
-      [trader, network],
-    );
-
-    const handleShowDetails = useCallback(() => {
-      modalActions.setContent(modalContent);
-      modalActions.toggle(true);
-    }, [modalActions, modalContent]);
-
     const pnl = useMemo(
       () => sells.amount.usd - buys.amount.usd,
       [sells.amount.usd, buys.amount.usd],
@@ -241,10 +228,8 @@ export const TopTradersRow = memo(
             {currencyFormat.format(pnl)}
           </span>
         </TableCell>
-        <TableCell className="p-3">
-          <div className="flex justify-end">
-            <Timer color={speedColor} className="inline-block" />
-          </div>
+        <TableCell className="px-5 py-3">
+          <Timer color={speedColor} className="inline-block" />
         </TableCell>
         <TableCell className="p-3 text-sm">
           {unrealizedProfit ? (
@@ -296,13 +281,8 @@ export const TopTradersRow = memo(
             "-"
           )}
         </TableCell>
-        <TableCell className="p-3">
-          <button
-            className="rounded-md px-3 py-1.5 text-zinc-400 transition-colors hover:bg-indigo-900/30 hover:text-zinc-100"
-            onClick={handleShowDetails}
-          >
-            <FilterIcon size={18} />
-          </button>
+        <TableCell className="px-5 py-3">
+          <TraderDetails traderInfo={trader} network={network} />
         </TableCell>
       </TableRow>
     );
