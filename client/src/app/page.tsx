@@ -7,16 +7,14 @@ export default function Home() {
     <div className="mx-auto max-w-5xl px-4">
       <section className="relative py-10 sm:py-14">
         <div className="flex flex-col items-center text-center">
-          <div className="mb-2 inline-flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-indigo-600 p-2">
+          <div className="mb-2 flex flex-col items-center gap-3">
+            <div className="h-14 w-14 rounded-full bg-indigo-600 p-2">
               <TrendingUp className="h-full w-full text-white" />
             </div>
             <h1 className="text-3xl font-bold text-white sm:text-4xl">
               Market Masters
             </h1>
           </div>
-
-          <div className="mb-6 mt-1 h-px w-24 bg-indigo-600/50"></div>
 
           <p className="max-w-lg text-base text-zinc-400 sm:text-lg">
             Discover the{" "}

@@ -22,7 +22,7 @@ export default function PairPreview() {
     <div className="mx-auto mt-6 max-w-5xl">
       <Link
         href={`/traders/${pair.id.chain}/${pair.id.pair}`}
-        className="flex flex-wrap items-center gap-x-3 gap-y-2 overflow-x-auto rounded-lg border border-zinc-700/80 p-3 transition-all hover:border-zinc-600 hover:shadow-md hover:shadow-zinc-900/20 sm:flex-nowrap"
+        className="flex flex-wrap items-center gap-x-3 gap-y-2 overflow-x-auto rounded-xl border border-zinc-700 bg-zinc-900 p-3 transition-all hover:border-zinc-600 hover:shadow-md hover:shadow-zinc-900/20 sm:flex-nowrap"
       >
         <div className="flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center overflow-hidden rounded-full border border-zinc-700 bg-black sm:h-[50px] sm:w-[50px]">
           <Image
@@ -74,7 +74,7 @@ export default function PairPreview() {
           </div>
         </div>
 
-        <div className="order-2 ml-auto flex-shrink-0 rounded-lg bg-zinc-800/50 px-2 py-2 transition-colors hover:bg-zinc-800 sm:order-none">
+        <div className="order-2 ml-auto flex-shrink-0 rounded-lg bg-zinc-800 px-2 py-2 transition-colors hover:bg-zinc-700 sm:order-none">
           <ExternalLink size={16} className="sm:size-18 text-zinc-400" />
         </div>
       </Link>
