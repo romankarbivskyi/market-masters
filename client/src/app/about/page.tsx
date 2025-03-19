@@ -13,7 +13,7 @@ export default function AboutPage() {
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-16 text-center">
         <h1 className="mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-          About <span className="text-indigo-400">Market Masters</span>
+          About Us
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-zinc-400">
           Building the next generation of market analysis tools for Web3 traders
@@ -41,7 +41,7 @@ export default function AboutPage() {
           <div className="flex items-center justify-center">
             <div className="relative h-64 w-full overflow-hidden rounded-xl sm:h-80">
               <Image
-                src="/images/about-image.webp"
+                src="/images/banner-3x.jpg"
                 alt="Market Masters Mission"
                 fill
                 className="object-cover"

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://mmasters.live"),
   title: {
     default: "MMasters - Top Crypto Traders & Market Makers",
-    template: "%s | MMasters",
+    template: "%s - MMasters",
   },
   description:
     "Find and analyze top crypto market makers and traders. Track performance, trading strategies, and profitability across multiple blockchain networks.",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     url: "https://mmasters.live",
     images: [
       {
-        url: "https://mmasters.live/logo.png",
+        url: "https://mmasters.live/banner-3x.jpg",
         width: 1200,
         height: 630,
         alt: "Market Masters - Crypto Trading Analytics",
@@ -55,7 +55,14 @@ export const metadata: Metadata = {
     title: "Top Crypto Traders & Market Makers - MMasters",
     description:
       "Find and analyze top crypto market makers and traders. Track performance, trading strategies, and profitability across multiple blockchain networks.",
-    images: ["https://mmasters.live/logo.png"],
+    images: [
+      {
+        url: "https://mmasters.live/banner-3x.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Market Masters - Crypto Trading Analytics",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -69,7 +76,7 @@ export const metadata: Metadata = {
     width: "device-width",
     initialScale: 1,
   },
-  themeColor: "#000000",
+  themeColor: "#09090B",
   alternates: {
     canonical: "https://mmasters.live",
   },

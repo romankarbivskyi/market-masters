@@ -6,14 +6,12 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-5xl px-4">
       <section className="relative py-10 sm:py-14">
-        <div className="flex flex-col items-center text-center">
+        <div className="relative flex flex-col items-center text-center">
           <div className="mb-2 flex flex-col items-center gap-3">
-            <div className="h-14 w-14 rounded-full bg-indigo-600 p-2">
-              <TrendingUp className="h-full w-full text-white" />
-            </div>
-            <h1 className="text-3xl font-bold text-white sm:text-4xl">
-              Market Masters
+            <h1 className="text-3xl font-bold text-white sm:text-5xl">
+              Market <span className="text-indigo-400">Masters</span>
             </h1>
+            <div className="w- absolute left-1/2 top-1/2 h-[50px] w-[50px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white blur-3xl"></div>
           </div>
 
           <p className="max-w-lg text-base text-zinc-400 sm:text-lg">
