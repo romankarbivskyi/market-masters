@@ -52,5 +52,5 @@ jobs:
             cd /app
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-client:latest
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-server:latest
-            docker-compose up -d --force-recreate
+            docker compose up -d --force-recreate
           EOF
