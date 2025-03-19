@@ -49,7 +49,7 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
-            cd /app
+            cd app
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-client:latest
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-server:latest
             docker compose up -d --force-recreate
