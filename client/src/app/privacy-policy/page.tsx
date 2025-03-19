@@ -260,6 +260,16 @@ export default function PrivacyPolicy() {
         <p className="mb-2">
           <strong>Email</strong>: support@mmasters.live
         </p>
+        <p className="mb-4">
+          You can also reach us through our{" "}
+          <a
+            href="/contact"
+            className="text-indigo-400 hover:text-indigo-300 hover:underline"
+          >
+            contact form
+          </a>
+          .
+        </p>
       </section>
 
       <hr className="my-8 border-zinc-800" />
