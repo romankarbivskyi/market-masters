@@ -34,7 +34,7 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-client:latest
           build-args: |
             NEXT_PUBLIC_BASE_API_URL=https://www.mmasters.live/api
-            NEXT_PUBLIC_WEB3FORMS_KEY=${{ secrets.WEB3FORMS_KEY }}
+            NEXT_PUBLIC_WEB3FORMS_KEY=bd0b7922-14d4-4ce9-8e3f-4c9d0fc5f3c5
 
       - name: Build and push server image
         uses: docker/build-push-action@v4
