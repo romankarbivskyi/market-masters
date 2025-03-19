@@ -2,7 +2,7 @@ import ContactForm from "@/components/ContactForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Market Masters",
+  title: "Contact Us - Market Masters",
   description:
     "Get in touch with the Market Masters team for support, questions, or feedback about our crypto analytics platform.",
 };
