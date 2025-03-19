@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X, BarChart2 } from "lucide-react";
+import { BarChart2, CircleHelp, Home, Menu, Phone } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-900 bg-zinc-950">
       <div className="px-4">
@@ -20,39 +23,65 @@ export default function Header() {
             </span>
           </Link>
 
-          <nav className="hidden md:block">
+          <nav className="hidden items-center gap-5 sm:flex">
             <Link
-              href="mailto:support@mmasters.live"
-              className="inline-flex items-center justify-center rounded-md border border-zinc-700 bg-zinc-800 px-5 py-1.5 text-sm font-medium text-white transition-colors hover:bg-zinc-700"
+              href="/"
+              className="text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
             >
-              Contact
+              Home
+            </Link>
+            <Link
+              href="/about"
+              className="text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
+            >
+              About us
+            </Link>
+            <Link
+              href="/contact"
+              className="text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
+            >
+              Contact us
             </Link>
           </nav>
 
-          <button
-            className="inline-flex items-center justify-center rounded-md p-2 text-zinc-400 hover:text-white focus:outline-none md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-expanded={isMenuOpen}
-          >
-            <span className="sr-only">Open main menu</span>
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <Popover>
+            <PopoverTrigger className="sm:hidden">
+              <Button variant="outline">
+                <Menu />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="mr-4 mt-2 overflow-hidden rounded-lg border border-zinc-700 bg-zinc-900 p-0">
+              <div className="flex flex-col gap-2">
+                <div className="hover:bg-zinc-800">
+                  <Link
+                    href="/"
+                    className="flex items-center gap-2 px-4 py-3 text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
+                  >
+                    <Home size={20} className="stroke-indigo-500" /> Home
+                  </Link>
+                </div>
+                <div className="hover:bg-zinc-800">
+                  <Link
+                    href="/about"
+                    className="flex items-center gap-2 px-4 py-3 text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
+                  >
+                    <CircleHelp size={20} className="stroke-indigo-500" /> About
+                    us
+                  </Link>
+                </div>
+                <div className="hover:bg-zinc-800">
+                  <Link
+                    href="/contact"
+                    className="flex items-center gap-2 px-4 py-3 text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
+                  >
+                    <Phone size={20} className="stroke-indigo-500" /> Contact us
+                  </Link>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
-
-      {isMenuOpen && (
-        <div className="bg-zinc-900 shadow-lg md:hidden">
-          <div className="px-4 py-3">
-            <Link
-              href="mailto:support@mmasters.live"
-              className="block w-full rounded-md border border-zinc-700 bg-zinc-800 px-5 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-zinc-700"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
-            </Link>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
