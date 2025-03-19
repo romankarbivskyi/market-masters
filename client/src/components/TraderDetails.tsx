@@ -39,15 +39,15 @@ export default function TraderDetails({
           className="stroke-zinc-400 hover:stroke-zinc-500"
         />
       </DialogTrigger>
-      <DialogContent className="!rounded-xl">
-        <DialogHeader>
-          <DialogTitle>Trader Details</DialogTitle>
+      <DialogContent className="max-h-[90vh] max-w-[95vw] overflow-y-auto !rounded-xl p-4 md:max-w-[600px] md:p-6">
+        <DialogHeader className="mb-2">
+          <DialogTitle className="text-lg">Trader Details</DialogTitle>
         </DialogHeader>
-        <div className="flex w-full max-w-[600px] flex-col gap-3">
+        <div className="flex w-full flex-col gap-3">
           <div className="flex gap-1 rounded-lg bg-zinc-800/50 p-1">
             <Button
               variant="secondary"
-              className={`flex-1 transition-all ${
+              className={`flex-1 text-xs transition-all sm:text-sm ${
                 coin === "usd"
                   ? "bg-zinc-700 text-white"
                   : "text-zinc-400 hover:bg-zinc-700/50"
@@ -58,7 +58,7 @@ export default function TraderDetails({
             </Button>
             <Button
               variant="secondary"
-              className={`flex-1 transition-all ${
+              className={`flex-1 text-xs transition-all sm:text-sm ${
                 coin === "eth"
                   ? "bg-zinc-700 text-white"
                   : "text-zinc-400 hover:bg-zinc-700/50"
@@ -69,9 +69,11 @@ export default function TraderDetails({
             </Button>
           </div>
 
-          <div className="flex flex-col gap-1 rounded-xl border border-zinc-700/60 bg-zinc-800/30 p-4">
+          <div className="flex flex-col gap-1 rounded-xl border border-zinc-700/60 bg-zinc-800/30 p-3 sm:p-4">
             <span className="text-sm font-medium text-zinc-400">Address</span>
-            <span className="overflow-x-auto font-mono text-sm">{address}</span>
+            <span className="break-all font-mono text-xs sm:text-sm">
+              {address}
+            </span>
           </div>
 
           <div className="flex flex-col gap-2 rounded-xl border border-zinc-700/60 bg-zinc-800/30 p-4">
