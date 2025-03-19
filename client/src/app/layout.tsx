@@ -15,7 +15,7 @@ const sora = Sora({
 export const metadata: Metadata = {
   metadataBase: new URL("https://mmasters.live"),
   title: {
-    default: "MMasters | Top Crypto Traders & Market Makers",
+    default: "MMasters - Top Crypto Traders & Market Makers",
     template: "%s | MMasters",
   },
   description:
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Market Masters",
-    title: "MMasters | Top Crypto Traders & Market Makers",
+    title: "MMasters - Top Crypto Traders & Market Makers",
     description:
       "Find and analyze top crypto market makers and traders. Track performance, trading strategies, and profitability across multiple blockchain networks.",
     url: "https://mmasters.live",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Top Crypto Traders & Market Makers | MMasters",
+    title: "Top Crypto Traders & Market Makers - MMasters",
     description:
       "Find and analyze top crypto market makers and traders. Track performance, trading strategies, and profitability across multiple blockchain networks.",
     images: ["https://mmasters.live/logo.png"],
@@ -64,11 +64,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-    other: {
-      rel: "apple-touch-icon-precomposed",
-      url: "/apple-touch-icon-precomposed.png",
-    },
   },
   viewport: {
     width: "device-width",

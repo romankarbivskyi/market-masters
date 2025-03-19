@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | MMasters",
+  title: "Privacy Policy - MMasters",
   description:
     "Privacy policy for MMasters explaining how we collect, use, and protect your data.",
 };

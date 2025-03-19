@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowRight, Award, BarChart2, Clock, Users } from "lucide-react";
 
 export const metadata = {
-  title: "About Us | Market Masters",
+  title: "About Us - Market Masters",
   description:
     "Learn about the Market Masters platform and the team behind it.",
 };

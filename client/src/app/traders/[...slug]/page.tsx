@@ -18,7 +18,7 @@ export async function generateMetadata({
 
     if (!data.success) {
       return {
-        title: "Pair not found | MMasters",
+        title: "Pair not found - MMasters",
         description: "The requested trading pair could not be found.",
       };
     }
@@ -32,7 +32,7 @@ export async function generateMetadata({
       title,
       description,
       openGraph: {
-        title: `${title} | MMasters`,
+        title: `${title} - MMasters`,
         description,
         url: `https://mmasters.live/traders/${network}/${address}`,
         type: "website",
@@ -47,7 +47,7 @@ export async function generateMetadata({
       },
       twitter: {
         card: "summary_large_image",
-        title: `${title} | MMasters`,
+        title: `${title} - MMasters`,
         description,
         images: ["https://mmasters.live/logo.png"],
       },
@@ -67,7 +67,7 @@ export async function generateMetadata({
   } catch (error) {
     console.error("Error fetching metadata:", error);
     return {
-      title: "Error loading trader data | MMasters",
+      title: "Error loading trader data - MMasters",
       description:
         "There was an error loading the trader information. Please try again later.",
     };
