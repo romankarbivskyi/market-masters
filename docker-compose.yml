@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
       args:
         - NEXT_PUBLIC_BASE_API_URL=https://mmasters.live/api
+        - NEXT_PUBLIC_WEB3FORMS_KEY=web3forms_key
     environment:
       - NEXT_PUBLIC_BASE_API_URL=https://mmasters.live/api
       - BASE_API_URL=http://server:5000/api
