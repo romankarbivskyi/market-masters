@@ -44,42 +44,45 @@ export default function Header() {
             </Link>
           </nav>
 
-          <Popover>
-            <PopoverTrigger className="sm:hidden">
-              <Button variant="outline">
-                <Menu />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="mr-4 mt-2 overflow-hidden rounded-lg border border-zinc-700 bg-zinc-900 p-0">
-              <div className="flex flex-col gap-2">
-                <div className="hover:bg-zinc-800">
-                  <Link
-                    href="/"
-                    className="flex items-center gap-2 px-4 py-3 text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
-                  >
-                    <Home size={20} className="stroke-indigo-500" /> Home
-                  </Link>
+          <div className="sm:hidden">
+            <Popover>
+              <PopoverTrigger>
+                <Button variant="outline">
+                  <Menu />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="mr-4 mt-2 w-60 overflow-hidden rounded-lg border border-zinc-700 bg-zinc-900/90 p-0 backdrop-blur">
+                <div className="flex flex-col gap-2">
+                  <div className="hover:bg-zinc-800">
+                    <Link
+                      href="/"
+                      className="flex items-center gap-2 px-4 py-3 text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
+                    >
+                      <Home size={20} className="stroke-indigo-500" /> Home
+                    </Link>
+                  </div>
+                  <div className="hover:bg-zinc-800">
+                    <Link
+                      href="/about"
+                      className="flex items-center gap-2 px-4 py-3 text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
+                    >
+                      <CircleHelp size={20} className="stroke-indigo-500" />{" "}
+                      About us
+                    </Link>
+                  </div>
+                  <div className="hover:bg-zinc-800">
+                    <Link
+                      href="/contact"
+                      className="flex items-center gap-2 px-4 py-3 text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
+                    >
+                      <Phone size={20} className="stroke-indigo-500" /> Contact
+                      us
+                    </Link>
+                  </div>
                 </div>
-                <div className="hover:bg-zinc-800">
-                  <Link
-                    href="/about"
-                    className="flex items-center gap-2 px-4 py-3 text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
-                  >
-                    <CircleHelp size={20} className="stroke-indigo-500" /> About
-                    us
-                  </Link>
-                </div>
-                <div className="hover:bg-zinc-800">
-                  <Link
-                    href="/contact"
-                    className="flex items-center gap-2 px-4 py-3 text-sm text-zinc-100 hover:text-zinc-300 active:text-zinc-400"
-                  >
-                    <Phone size={20} className="stroke-indigo-500" /> Contact us
-                  </Link>
-                </div>
-              </div>
-            </PopoverContent>
-          </Popover>
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
       </div>
     </header>
