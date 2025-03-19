@@ -20,5 +20,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: "https://mmasters.live/about",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://mmasters.live/contact",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 }
