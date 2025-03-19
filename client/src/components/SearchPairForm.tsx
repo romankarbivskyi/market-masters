@@ -109,12 +109,16 @@ export default function TokenForm() {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="border-zinc-700 bg-zinc-800 p-3 sm:w-[180px]">
+                    <SelectTrigger className="border-zinc-700 bg-zinc-800 p-3 ring-offset-zinc-900 focus:border-indigo-500 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 sm:w-[180px]">
                       <SelectValue placeholder="Chain" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="border-zinc-700 bg-zinc-800">
                       {options.map(({ label, value }) => (
-                        <SelectItem key={value} value={value}>
+                        <SelectItem
+                          key={value}
+                          value={value}
+                          className="focus:bg-zinc-700"
+                        >
                           {label}
                         </SelectItem>
                       ))}
@@ -133,7 +137,7 @@ export default function TokenForm() {
                 <FormControl>
                   <Input
                     placeholder="DPd8kXTbRHcLSbLKuHQe..."
-                    className="w-full border-zinc-700 bg-zinc-800 px-4 py-3"
+                    className="w-full border border-zinc-700 bg-zinc-800 px-4 py-3 ring-offset-zinc-900 focus:border-indigo-500 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                     {...field}
                   />
                 </FormControl>
