@@ -2,8 +2,6 @@ name: Deploy App
 
 on:
   push:
-    branches: [main, develop]
-  pull_request:
     branches: [main]
 
 env:
@@ -19,33 +17,38 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        run: git clone $GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git .
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        run: docker buildx create --use
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GH_TOKEN }}
+        run: echo "${{ secrets.GH_TOKEN }}" | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
 
       - name: Build and push client image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./client
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-client:latest
-          build-args: NEXT_PUBLIC_BASE_API_URL=https://www.mmasters.live/api
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+        run: |
+          docker buildx build \
+            --push \
+            --build-arg NEXT_PUBLIC_BASE_API_URL=https://www.mmasters.live/api \
+            --build-arg NEXT_PUBLIC_WEB3FORMS_KEY=bd0b7922-14d4-4ce9-8e3f-4c9d0fc5f3c5 \
+            --tag ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-client:latest \
+            ./client
 
       - name: Build and push server image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./server
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-server:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+        run: |
+          docker buildx build \
+            --push \
+            --tag ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-server:latest \
+            ./server
+
+      - name: Connect to VPS and deploy using SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            cd /app
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-client:latest
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-server:latest
+            docker-compose up -d --force-recreate
+          EOF
