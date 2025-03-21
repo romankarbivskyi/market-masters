@@ -118,6 +118,7 @@ export default function TokenForm() {
                           key={value}
                           value={value}
                           className="focus:bg-zinc-700"
+                          aria-label={`Select ${label}`}
                         >
                           {label}
                         </SelectItem>
@@ -149,6 +150,7 @@ export default function TokenForm() {
               type="submit"
               disabled={isLoading}
               className="mt-auto w-full bg-indigo-600 px-6 py-3 text-white hover:bg-indigo-700/80"
+              alia-label="Search"
             >
               <Search className="mr-2" />
               Search
