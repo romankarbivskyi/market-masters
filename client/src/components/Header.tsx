@@ -7,7 +7,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
 
 export default function Header() {
   return (
@@ -46,10 +45,11 @@ export default function Header() {
 
           <div className="sm:hidden">
             <Popover>
-              <PopoverTrigger>
-                <Button variant="outline">
-                  <Menu />
-                </Button>
+              <PopoverTrigger
+                aria-label="Aria Menu"
+                className="rounded-md border border-zinc-700 bg-zinc-800 p-2"
+              >
+                <Menu className="h-5 w-5" />
               </PopoverTrigger>
               <PopoverContent className="mr-4 mt-2 w-60 overflow-hidden rounded-lg border border-zinc-700 bg-zinc-900/90 p-0 backdrop-blur">
                 <div className="flex flex-col gap-2">

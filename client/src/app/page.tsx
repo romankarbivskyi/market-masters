@@ -6,18 +6,15 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-5xl px-4">
       <section className="relative py-10 sm:py-14">
-        <div className="relative flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center">
           <div className="mb-2 flex flex-col items-center gap-3">
             <h1 className="text-3xl font-bold text-white sm:text-5xl">
               Market <span className="text-indigo-400">Masters</span>
             </h1>
-            <div className="w- absolute left-1/2 top-1/2 h-[50px] w-[50px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white blur-3xl"></div>
           </div>
 
           <p className="max-w-lg text-base text-zinc-400 sm:text-lg">
-            Discover the{" "}
-            <span className="font-medium text-white">smartest traders</span> in
-            the cryptocurrency market
+            Discover the smartest traders in the cryptocurrency market
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-3">
