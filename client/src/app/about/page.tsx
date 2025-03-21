@@ -39,12 +39,14 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="flex items-center justify-center">
-            <div className="relative h-64 w-full overflow-hidden rounded-xl sm:h-80">
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl">
               <Image
                 src="/images/banner-3x.jpg"
                 alt="Market Masters Mission"
                 fill
-                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover object-center"
+                priority
               />
             </div>
           </div>
