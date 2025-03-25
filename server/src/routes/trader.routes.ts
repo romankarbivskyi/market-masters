@@ -1,5 +1,5 @@
 import { Router } from "express";
-import TraderController from "../controllers/trader.controller";
+import { TraderController } from "../controllers/trader.controller";
 
 const traderRouter = Router();
 const traderController = new TraderController();

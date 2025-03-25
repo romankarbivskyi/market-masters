@@ -70,3 +70,13 @@ export interface Pair {
   price: number;
   tokenLogo: string;
 }
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  emailVerified?: boolean;
+  expritesAt: Date | null;
+  plan: string;
+  role: string;
+}

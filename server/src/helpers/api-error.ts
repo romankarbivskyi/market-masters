@@ -10,4 +10,12 @@ export class ApiError extends Error {
   static BadRequest(message: string) {
     return new ApiError(400, message);
   }
+
+  static Unauthorized(message: string) {
+    return new ApiError(401, message);
+  }
+
+  static Forbidden() {
+    return new ApiError(403, "Forbidden");
+  }
 }

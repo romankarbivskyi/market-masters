@@ -7,8 +7,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import useAuth from "@/hooks/useAuth";
 
 export default function Header() {
+  const { isAuthenticated, user } = useAuth();
+
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-900 bg-zinc-950">
       <div className="px-4">
@@ -41,6 +45,15 @@ export default function Header() {
             >
               Contact us
             </Link>
+            {isAuthenticated ? (
+              <Button variant={"secondary"} asChild>
+                <Link href="/dashboard">Dashboard</Link>
+              </Button>
+            ) : (
+              <Button variant={"secondary"} asChild>
+                <Link href="/login">Sign In</Link>
+              </Button>
+            )}
           </nav>
 
           <div className="sm:hidden">

@@ -1,5 +1,5 @@
 import { ApiResponse, NetworkConfig, Pair, TradersData } from "@/types";
-import { AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import axios from "axios";
 
 interface TopTradersResponse {
@@ -44,4 +44,20 @@ export const fetchNetworks = (): Promise<
     ApiResponse<NetworkConfig[]>,
     AxiosResponse<ApiResponse<NetworkConfig[]>>
   >("/networks");
+};
+
+export const loginUser = (email: string, password: string) => {
+  return API.post("/auth/login", { email, password });
+};
+
+export const signUpUser = (name: string, email: string, password: string) => {
+  return API.post("/auth/register", { name, email, password });
+};
+
+export const fetchUser = (token: string) => {
+  return API.get("/auth/me", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  } as AxiosRequestConfig);
 };

@@ -1,13 +1,12 @@
 import { DextoolsService } from "../services/dextools.service";
-import {Request, Response, NextFunction} from "express";
+import { Request, Response, NextFunction } from "express";
 
-class PairController {
-private dextoolsService: DextoolsService;
+export class PairController {
+  private dextoolsService: DextoolsService;
 
   constructor() {
     this.dextoolsService = new DextoolsService();
   }
-
 
   getPair = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -19,8 +18,5 @@ private dextoolsService: DextoolsService;
     } catch (err) {
       next(err);
     }
-  };  
+  };
 }
-
-
-export default PairController;
