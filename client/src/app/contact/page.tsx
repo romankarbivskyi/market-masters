@@ -14,8 +14,8 @@ export default function ContactUs() {
         Contact Us
       </h1>
       <p className="mx-auto mb-8 max-w-2xl text-center text-zinc-400">
-        Have a question or feedback? We'd love to hear from you. Fill out the
-        form below and our team will get back to you as soon as possible.
+        Have a question or feedback? We&apos;d love to hear from you. Fill out
+        the form below and our team will get back to you as soon as possible.
       </p>
       <ContactForm />
     </div>

@@ -38,7 +38,7 @@ export default function useAuth() {
           } else {
             logout();
           }
-        } catch (error) {
+        } catch {
           const cachedUser = localStorage.getItem("user");
           if (cachedUser) {
             setUser(JSON.parse(cachedUser));

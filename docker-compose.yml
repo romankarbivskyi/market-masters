@@ -7,9 +7,10 @@ services:
       args:
         - NEXT_PUBLIC_BASE_API_URL=https://mmasters.live/api
         - NEXT_PUBLIC_WEB3FORMS_KEY=web3forms_key
+    ports:
+      - "3000:3000"
     environment:
       - NEXT_PUBLIC_BASE_API_URL=https://mmasters.live/api
-      - BASE_API_URL=http://server:5000/api
     depends_on:
       - server
       - postgres
@@ -20,11 +21,19 @@ services:
     # image: ghcr.io/romankarbivskyi/market-masters-server:latest
     build:
       context: ./server
-      dockerfile: Dockerfile
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
     environment:
       - PORT=5000
+      - SERVER_URL=http://localhost:5000
+      - CLIENT_URL=http://localhost:3000
+      - DATABASE_URL=postgresql://postgres:root@postgres/mmasters?schema=public
+      - GOOGLE_CLIENT_ID=934569291699-v2c0b1laq31l60ufcucb2ad8itgoh6sp.apps.googleusercontent.com
+      - GOOGLE_CLIENT_SECRET=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
+      - JWT_SECRET=secret
     networks:
       - app-network
   postgres:
@@ -33,12 +42,18 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=mmasters
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data 
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 2s
+      retries: 20
 networks:
   app-network:
     driver: bridge

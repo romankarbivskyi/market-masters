@@ -1,8 +1,37 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import useAuth from "@/hooks/useAuth";
+import { Loader2 } from "lucide-react";
 
 export default function Layout({ children }: { children: ReactNode }) {
+  const router = useRouter();
+
+  const [isPageLoading, setIsPageLoading] = useState(true);
+
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+
+  useEffect(() => {
+    if (!authLoading) {
+      if (isAuthenticated) {
+        router.replace("/");
+      } else {
+        setIsPageLoading(false);
+      }
+    }
+  }, [isAuthenticated, authLoading, router]);
+
+  if (isPageLoading || authLoading) {
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-indigo-500" />
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto w-full max-w-md rounded-lg border border-zinc-800 bg-zinc-900 p-6">
       <Button

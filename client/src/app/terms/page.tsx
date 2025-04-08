@@ -1,4 +1,3 @@
-import { Link } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -130,8 +129,8 @@ export default function TermsOfService() {
       <section className="mb-8">
         <h2 className="mb-4 text-2xl font-semibold">7. Disclaimers</h2>
         <p className="mb-4 font-medium uppercase">
-          THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES
-          OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+          THE SERVICE IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot;
+          WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED.
         </p>
         <p className="mb-4">
           We do not warrant that the Service will be uninterrupted or

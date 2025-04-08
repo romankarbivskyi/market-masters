@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Award, BarChart2, Clock, Users } from "lucide-react";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "About Us - Market Masters",
   description:
     "Learn about the Market Masters platform and the team behind it.",
@@ -27,15 +28,15 @@ export default function AboutPage() {
               Our Mission
             </h2>
             <p className="mb-6 text-zinc-400">
-              At Market Masters, we're on a mission to democratize market
+              At Market Masters, we&apos;re on a mission to democratize market
               intelligence. We believe that sophisticated trading analytics
-              shouldn't be available only to whales and institutions, but to
-              everyone in the Web3 ecosystem.
+              shouldn&apos;t be available only to whales and institutions, but
+              to everyone in the Web3 ecosystem.
             </p>
             <p className="text-zinc-400">
               By combining real-time data, powerful analytics, and an intuitive
-              user experience, we're enabling traders of all levels to make more
-              informed decisions in the fast-paced world of crypto trading.
+              user experience, we&apos;re enabling traders of all levels to make
+              more informed decisions in the fast-paced world of crypto trading.
             </p>
           </div>
           <div className="flex items-center justify-center">
@@ -117,8 +118,8 @@ export default function AboutPage() {
       <div className="mt-20 text-center">
         <h2 className="mb-6 text-2xl font-semibold text-white">Get In Touch</h2>
         <p className="mx-auto mb-8 max-w-2xl text-zinc-400">
-          Have questions or want to learn more about Market Masters? We'd love
-          to hear from you!
+          Have questions or want to learn more about Market Masters? We&apos;d
+          love to hear from you!
         </p>
         <Link
           href="/contact"

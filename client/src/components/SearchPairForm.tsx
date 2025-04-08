@@ -69,7 +69,7 @@ export default function TokenForm() {
         setIsLoading(false);
       }
     },
-    [form.setError],
+    [setPair],
   );
 
   useEffect(() => {

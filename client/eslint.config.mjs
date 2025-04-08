@@ -9,13 +9,14 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
+/** @type {import('eslint').Linter.FlatConfig[]} */
 const eslintConfig = [
-  ...compat.extends({
-    extends: ["next/core-web-vitals", "next/typescript"],
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
     rules: {
       "@typescript-eslint/ban-ts-comment": "off",
     },
-  }),
+  },
 ];
 
 export default eslintConfig;

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Loader2, Mail, Lock, Contact } from "lucide-react";
+import { AxiosError } from "axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,7 +20,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signUpUser } from "@/services/api";
-import useAuth from "@/hooks/useAuth";
 
 const signUpSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),
@@ -33,20 +33,6 @@ export default function SignUp() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [generalError, setGeneralError] = useState<string | null>(null);
-
-  const [isPageLoading, setIsPageLoading] = useState(true);
-
-  const { isAuthenticated, isLoading: authLoading } = useAuth();
-
-  useEffect(() => {
-    if (!authLoading) {
-      if (isAuthenticated) {
-        router.replace("/");
-      } else {
-        setIsPageLoading(false);
-      }
-    }
-  }, [isAuthenticated, authLoading, router]);
 
   const form = useForm<SignUpForm>({
     resolver: zodResolver(signUpSchema),
@@ -73,20 +59,15 @@ export default function SignUp() {
       localStorage.setItem("user", JSON.stringify(result.data.user));
 
       router.push("/");
-    } catch (error: any) {
-      setGeneralError(error.message || "An error occurred during login");
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setGeneralError(error.response?.data.message || "An error occurred");
+        return;
+      }
     } finally {
       setIsLoading(false);
     }
   };
-
-  if (isPageLoading || authLoading) {
-    return (
-      <div className="flex min-h-[50vh] items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-indigo-500" />
-      </div>
-    );
-  }
 
   return (
     <>

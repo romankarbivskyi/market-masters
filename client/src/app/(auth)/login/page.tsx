@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -19,8 +19,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { loginUser } from "@/services/api";
-import useAuth from "@/hooks/useAuth";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AxiosError } from "axios";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email"),
@@ -30,6 +30,14 @@ const loginSchema = z.object({
 type LoginForm = z.infer<typeof loginSchema>;
 
 export default function Login() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginContent />
+    </Suspense>
+  );
+}
+
+function LoginContent() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
 
@@ -38,19 +46,6 @@ export default function Login() {
   const [generalError, setGeneralError] = useState<string | null>(
     error || null,
   );
-  const [isPageLoading, setIsPageLoading] = useState(true);
-
-  const { isAuthenticated, isLoading: authLoading } = useAuth();
-
-  useEffect(() => {
-    if (!authLoading) {
-      if (isAuthenticated) {
-        router.replace("/");
-      } else {
-        setIsPageLoading(false);
-      }
-    }
-  }, [isAuthenticated, authLoading, router]);
 
   const form = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
@@ -77,22 +72,17 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(result.data.user));
 
       router.push("/");
-    } catch (error: any) {
-      setGeneralError(
-        error.response?.data?.message || "An error occurred during login",
-      );
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setGeneralError(
+          error.response?.data?.message || "An error occurred during login",
+        );
+        return;
+      }
     } finally {
       setIsLoading(false);
     }
   };
-
-  if (isPageLoading || authLoading) {
-    return (
-      <div className="flex min-h-[50vh] items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-indigo-500" />
-      </div>
-    );
-  }
 
   return (
     <>
@@ -178,7 +168,7 @@ export default function Login() {
       </Form>
 
       <p className="mt-6 text-center text-sm text-zinc-400">
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <Link
           href="/sign-up"
           className="text-indigo-400 hover:text-indigo-300 hover:underline"

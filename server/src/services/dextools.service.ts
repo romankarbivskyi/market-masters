@@ -2,7 +2,6 @@ import fakeUa from "fake-useragent";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { Pair, TradersData } from "../types";
 import { ApiError } from "../helpers/api-error";
-import { parse } from "path";
 
 export class DextoolsService {
   async getTopTraders(network: string, address: string): Promise<TradersData> {

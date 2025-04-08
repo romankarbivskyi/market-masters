@@ -1,22 +1,31 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { redirect, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { fetchUser } from "@/services/api";
 import useAuth from "@/hooks/useAuth";
+import { Suspense } from "react";
 
-export default function OAuthCallback() {
+export default function AuthCallback() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AuthCallbackContent />
+    </Suspense>
+  );
+}
+
+function AuthCallbackContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
+  const [, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (isAuthenticated) router.replace("/");
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router]);
 
   useEffect(() => {
     const token = searchParams.get("token");

@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import useAuth from "@/hooks/useAuth";
 
 export default function Header() {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-900 bg-zinc-950">
